@@ -1,0 +1,7 @@
+# Build artifacts
+frontend/dist
+*.db
+cpg.db
+
+# IDE / OS
+.DS_Store

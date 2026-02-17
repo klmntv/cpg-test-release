@@ -1,0 +1,23 @@
+Snapshot time: 2026-02-16 16:34:20 UTC
+
+docker compose ps -a
+NAME                      IMAGE                   COMMAND                  SERVICE   CREATED              STATUS              PORTS
+cpg-test-release-app-1    cpg-test-release-app    "sh -c 'until [ -f /…"   app       About a minute ago   Created
+cpg-test-release-init-1   cpg-test-release-init   "sh -ec 'if [ ! -f /…"   init      About a minute ago   Up About a minute
+
+docker compose logs --tail 220 --timestamps init
+init-1  | 2026-02-16T16:32:38.407538962Z Generating CPG (this may take a long time)...
+init-1  | 2026-02-16T16:32:38.429229587Z [00:00] Analyzing 3 modules: prometheus (primary), client_golang, adapter
+init-1  | 2026-02-16T16:32:38.439516462Z [00:00] Loading packages via workspace (3 modules)...
+
+docker compose logs --tail 120 --timestamps app
+(no log lines)
+
+docker inspect cpg-test-release-init-1 --format '{{json .State}}'
+{"Status":"running","Running":true,"Paused":false,"Restarting":false,"OOMKilled":false,"Dead":false,"Pid":17131,"ExitCode":0,"Error":"","StartedAt":"2026-02-16T16:32:38.319910212Z","FinishedAt":"0001-01-01T00:00:00Z"}
+
+docker run --rm -v cpg-test-release_cpgdata:/data alpine sh -c 'ls -lah /data; [ -f /data/cpg.db ] && du -h /data/cpg.db || true'
+total 12K
+drwxr-xr-x    2 root     root        4.0K Feb 16 15:10 .
+drwxr-xr-x    1 root     root        4.0K Feb 16 16:34 ..
+-rw-r--r--    1 root     root           6 Feb 16 15:10 .ready

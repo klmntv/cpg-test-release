@@ -1,0 +1,69 @@
+.wrapper {
+  min-height: 0;
+}
+
+.fileName {
+  color: var(--muted);
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Space Mono', 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.line {
+  display: block;
+  padding-inline: 3px;
+  cursor: pointer;
+}
+
+.highlight {
+  background: rgba(185, 162, 255, 0.15);
+}
+
+.active {
+  background: rgba(139, 164, 255, 0.22);
+}
+
+.empty {
+  padding: 1.1rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+.tokenPlain {
+  color: #dde2f0;
+}
+
+.tokenComment {
+  color: #7f8ba7;
+}
+
+.tokenString {
+  color: #8fe0c2;
+}
+
+.tokenKeyword {
+  color: #9ab8ff;
+  font-weight: 600;
+}
+
+.tokenNumber {
+  color: #f4c88c;
+}
+
+.tokenType {
+  color: #c9a8ff;
+}
+
+.tokenBuiltin {
+  color: #ffd57a;
+}

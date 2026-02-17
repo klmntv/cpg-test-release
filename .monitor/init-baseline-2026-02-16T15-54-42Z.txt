@@ -1,0 +1,16 @@
+Snapshot time: 2026-02-16 15:54:42 UTC
+
+docker compose ps
+NAME                      IMAGE                   COMMAND                  SERVICE   CREATED          STATUS          PORTS
+cpg-test-release-init-1   cpg-test-release-init   "sh -ec 'if [ ! -f /…"   init      20 minutes ago   Up 20 minutes
+
+docker compose logs --tail 120 --timestamps init
+init-1  | 2026-02-16T15:33:56.705839054Z Generating CPG (this may take a long time)...
+init-1  | 2026-02-16T15:33:56.708858221Z [00:00] Analyzing 3 modules: prometheus (primary), client_golang, adapter
+init-1  | 2026-02-16T15:33:56.717046304Z [00:00] Loading packages via workspace (3 modules)...
+
+docker exec cpg-test-release-init-1 sh -lc "ps -o pid,stat,etime,time,pcpu,pmem,args -p 1,7,23"
+  PID STAT     ELAPSED     TIME %CPU %MEM COMMAND
+    1 Ss         20:54 00:00:00  0.0  0.0 sh -ec if [ ! -f /data/cpg.db ]; then echo 'Generating CPG (this may take a long time)...'; /cpg-gen -modules './client_golang:github.com/prometheus/client_golang:client_golang,./prometheus-adapter:sigs.k8s.io/prometheus-adapter:adapter' ./prometheus /data/cpg.db; fi; echo 'ready' > /data/.ready; echo 'Init done.'
+    7 Sl         20:54 00:00:00  0.0  0.1 /cpg-gen -modules ./client_golang:github.com/prometheus/client_golang:client_golang,./prometheus-adapter:sigs.k8s.io/prometheus-adapter:adapter ./prometheus /data/cpg.db
+   23 Sl         20:54 00:00:08  0.6  0.5 go list -e -json=Name,ImportPath,Error,Dir,GoFiles,IgnoredGoFiles,IgnoredOtherFiles,CFiles,CgoFiles,CXXFiles,MFiles,HFiles,FFiles,SFiles,SwigFiles,SwigCXXFiles,SysoFiles,CompiledGoFiles,Export,DepOnly,Imports,ImportMap,Module -compiled=true -test=false -export=false -deps=true -find=false -pgo=off -- github.com/prometheus/prometheus/... github.com/prometheus/client_golang/... sigs.k8s.io/prometheus-adapter/...

@@ -1,0 +1,240 @@
+.controls {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+}
+
+.controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.controls input[type='range'] {
+  width: 96px;
+  accent-color: var(--accent);
+}
+
+.controls select,
+.controls input,
+.controls button {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #070a11;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.28rem 0.56rem;
+}
+
+.controls button {
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 0.42rem 0.74rem;
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: #0d1220;
+}
+
+.controls button:disabled {
+  opacity: 0.46;
+  cursor: not-allowed;
+}
+
+.controls span {
+  min-width: 26px;
+  color: #cbd3e7;
+}
+
+.warn {
+  color: #ffc976 !important;
+  font-size: 0.69rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.callsLayout {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.callsTopRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.callsBottomRow {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) auto;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.callsGroup {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+  min-width: 0;
+}
+
+.groupTitle {
+  color: #7b85a1;
+  font-size: 0.62rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  margin-right: 2px;
+}
+
+.primaryAction {
+  border-color: rgba(163, 178, 255, 0.52) !important;
+  background: rgba(95, 116, 200, 0.16) !important;
+}
+
+.secondaryAction {
+  opacity: 0.9;
+}
+
+.statusPill {
+  margin-left: auto;
+  border: 1px solid rgba(66, 77, 110, 0.6);
+  border-radius: 999px;
+  background: rgba(9, 13, 24, 0.72);
+  color: #b5bfd9;
+  font-size: 0.67rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.62rem;
+  white-space: nowrap;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: 2px;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.69rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.legendDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.queryControls {
+  flex: 1;
+}
+
+.queryControls input[type='text'] {
+  min-width: 210px;
+}
+
+.focusLabel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  width: min(100%, 620px);
+  max-width: none;
+  min-width: 0;
+}
+
+.focusSelect {
+  width: 100%;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inlineWarning {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-self: end;
+}
+
+.increaseBtn {
+  border: 1px solid rgba(255, 198, 114, 0.58) !important;
+  background: rgba(255, 184, 86, 0.1) !important;
+  color: #ffd289 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.66rem !important;
+  padding: 0.28rem 0.52rem !important;
+}
+
+@media (max-width: 1320px) {
+  .callsBottomRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .inlineWarning {
+    justify-self: start;
+  }
+}
+
+.checkLabel {
+  color: #c1c8db;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.checkLabel input[type='checkbox'] {
+  width: 0.9rem;
+  height: 0.9rem;
+  accent-color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .controls {
+    width: 100%;
+  }
+
+  .callsTopRow,
+  .callsGroup {
+    width: 100%;
+  }
+
+  .callsBottomRow {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .inlineWarning {
+    justify-self: start;
+  }
+
+  .statusPill {
+    margin-left: 0;
+  }
+}

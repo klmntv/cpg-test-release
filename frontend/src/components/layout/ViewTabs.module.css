@@ -1,0 +1,35 @@
+.modeSwitch {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-right: 6px;
+}
+
+.modeSwitch button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.73rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.46rem 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.modeSwitch button:hover {
+  background: rgba(104, 122, 190, 0.14);
+}
+
+.active {
+  color: var(--text) !important;
+  background: rgba(185, 162, 255, 0.16) !important;
+}
+
+@media (max-width: 760px) {
+  .modeSwitch {
+    width: 100%;
+    overflow: auto;
+  }
+}

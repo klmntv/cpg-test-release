@@ -1,0 +1,26 @@
+Snapshot time: 2026-02-16 16:27:35 UTC
+
+docker compose ps -a
+NAME                      IMAGE                   COMMAND                  SERVICE   CREATED          STATUS                       PORTS
+cpg-test-release-app-1    cpg-test-release-app    "sh -c 'until [ -f /…"   app       53 minutes ago   Created
+cpg-test-release-init-1   cpg-test-release-init   "sh -ec 'if [ ! -f /…"   init      53 minutes ago   Exited (137) 3 seconds ago
+
+docker compose logs --tail 200 --timestamps init
+init-1  | 2026-02-16T15:33:56.705839054Z Generating CPG (this may take a long time)...
+init-1  | 2026-02-16T15:33:56.708858221Z [00:00] Analyzing 3 modules: prometheus (primary), client_golang, adapter
+init-1  | 2026-02-16T15:33:56.717046304Z [00:00] Loading packages via workspace (3 modules)...
+init-1  | 2026-02-16T16:25:16.348477132Z [51:19] Loaded 163 packages (490 files, ~170k LOC)
+init-1  | 2026-02-16T16:25:16.349082591Z [51:19] Walking AST...
+init-1  | 2026-02-16T16:25:33.024848418Z [51:36] Created 511118 nodes, 853302 AST edges, 4098 has_method edges (skipped 7 generated/test files)
+init-1  | 2026-02-16T16:25:33.025259584Z [51:36] Building SSA...
+init-1  | 2026-02-16T16:25:34.906493294Z [51:38] Warning: 7 packages failed SSA construction
+init-1  | 2026-02-16T16:27:39.188309171Z Killed
+
+docker inspect cpg-test-release-init-1 --format '{{json .State}}'
+{"Status":"exited","Running":false,"Paused":false,"Restarting":false,"OOMKilled":true,"Dead":false,"Pid":0,"ExitCode":137,"Error":"","StartedAt":"2026-02-16T15:33:56.649378971Z","FinishedAt":"2026-02-16T16:27:39.203195629Z"}
+
+docker run --rm -v cpg-test-release_cpgdata:/data alpine sh -c 'ls -lah /data; [ -f /data/cpg.db ] && du -h /data/cpg.db || true'
+total 12K
+drwxr-xr-x    2 root     root        4.0K Feb 16 15:10 .
+drwxr-xr-x    1 root     root        4.0K Feb 16 16:27 ..
+-rw-r--r--    1 root     root           6 Feb 16 15:10 .ready

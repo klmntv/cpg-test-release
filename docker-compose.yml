@@ -1,0 +1,33 @@
+services:
+  init:
+    build:
+      context: .
+      dockerfile: Dockerfile.init
+    environment:
+      # Performance-by-default settings for CPG generation.
+      GOMEMLIMIT: ${CPG_GOMEMLIMIT:-8GiB}
+      GOGC: ${CPG_GOGC:-60}
+      GOMAXPROCS: ${CPG_GOMAXPROCS:-4}
+    volumes:
+      - cpgdata:/data
+      - gomodcache:/go/pkg/mod
+      - gobuildcache:/root/.cache/go-build
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT:-8080}:8080"
+    volumes:
+      - cpgdata:/data
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  cpgdata:
+  gomodcache:
+  gobuildcache:

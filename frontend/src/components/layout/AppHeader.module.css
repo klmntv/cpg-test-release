@@ -1,0 +1,151 @@
+.header {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #06080c 0%, #04060a 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.01);
+  display: grid;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.topRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(320px, 40%);
+  gap: 12px 14px;
+  align-items: start;
+}
+
+.brandBlock {
+  min-width: 220px;
+}
+
+.navWrap {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.searchWrap {
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+}
+
+.controlRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 14px;
+  align-items: end;
+}
+
+.controlsColumn {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.06rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.meta {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.baseControls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px 10px;
+}
+
+.viewControls {
+  min-width: 0;
+}
+
+.checkLabel {
+  color: #c1c8db;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.checkLabel input[type='checkbox'] {
+  width: 0.9rem;
+  height: 0.9rem;
+  accent-color: var(--accent);
+}
+
+.actionButton,
+.backButton {
+  border: 1px solid var(--line);
+  background: #070a11;
+  color: var(--text);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.42rem 0.74rem;
+  cursor: pointer;
+}
+
+.actionButton:hover,
+.backButton:hover {
+  border-color: var(--line-strong);
+  background: #0d1220;
+}
+
+.backWrap {
+  display: flex;
+  align-items: end;
+}
+
+.backButton {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 1500px) {
+  .topRow {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .searchWrap {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
+  .controlRow {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .backWrap {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .brandBlock {
+    min-width: 150px;
+  }
+}

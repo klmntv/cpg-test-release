@@ -1,0 +1,21 @@
+# Build cpg-gen and prepare runtime with full source for one-shot DB generation.
+FROM golang:1.25-bookworm AS builder
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN go build -o /cpg-gen .
+
+FROM golang:1.25-bookworm
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates git sqlite3 \
+ && rm -rf /var/lib/apt/lists/*
+ENV GOMEMLIMIT=8GiB
+ENV GOGC=60
+ENV GOMAXPROCS=4
+COPY --from=builder /cpg-gen /cpg-gen
+COPY . /src
+WORKDIR /src
+RUN chmod +x /src/scripts/init-cpg.sh
+VOLUME /data
+CMD ["/src/scripts/init-cpg.sh"]
